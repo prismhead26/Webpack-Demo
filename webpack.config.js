@@ -25,15 +25,26 @@ module.exports = {
         // the assetModuleFilename is set to [name][ext] to keep the original name of the asset files
         assetModuleFilename: '[name][ext]',
     },
+    // devtool: the source map configuration for the webpack build
+    // the source map is used to map the code in the bundle to the original code
+    // the source map is used to debug the code in the browser
     devtool: 'source-map',
+    // devServer: the configuration for the webpack development server
     devServer: {
+        // the static option is used to set the directory to serve the files from which is the dist folder
         static: {
+            // the directory option is set to the path to the dist folder
             directory: path.resolve(__dirname, 'dist'),
         },
+        // port: the port to run the server on
         port: 3000,
+        // open: a boolean that determines if the browser should start automatically
         open: true,
+        // hot: if enabled the server will reload the page when the files change
         hot: true,
+        // compress: if enabled the server will compress the files before serving them
         compress: true,
+        // historyApiFallback: if enabled the server will fallback to the index.html file when the route is not found
         historyApiFallback: true,
     },
     /**
@@ -85,6 +96,7 @@ module.exports = {
     // plugins: an array of plugins to be used in the webpack build
     plugins: [
         // the HtmlWebpackPlugin is used to generate the index.html file in the dist folder
+        // npm i -D html-webpack-plugin
         new HtmlWebpackPlugin({
             // the title option is used to set the title of the generated html file
             // the title can be accessed in the template file using the ejs syntax <%= htmlWebpackPlugin.options.title %>
@@ -95,7 +107,7 @@ module.exports = {
             template: path.resolve(__dirname, '/src/template.html')
         }),
         // the BundleAnalyzerPlugin is used to generate a report of the bundle size
-        
+        // npm i -D webpack-bundle-analyzer
         new BundleAnalyzerPlugin(),
     ]
 }
